@@ -19,3 +19,8 @@
  */
 
 Encore\Admin\Form::forget(['map', 'editor']);
+
+
+
+//重写内置视图
+app('view')->prependNamespace('admin', resource_path('views/admin/'));
