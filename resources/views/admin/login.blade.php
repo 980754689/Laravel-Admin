@@ -1,89 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="no-js">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{config('admin.title')}} | {{ trans('admin.login') }}</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.5 -->
-  <link rel="stylesheet" href="{{ admin_asset("/vendor/laravel-admin/AdminLTE/bootstrap/css/bootstrap.min.css") }}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ admin_asset("/vendor/laravel-admin/font-awesome/css/font-awesome.min.css") }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ admin_asset("/vendor/laravel-admin/AdminLTE/dist/css/AdminLTE.min.css") }}">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{{ admin_asset("/vendor/laravel-admin/AdminLTE/plugins/iCheck/square/blue.css") }}">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<title>登录</title>
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+<link rel="stylesheet" href="{{ admin_asset('/vendor/laravel-admin/adminLogin/css/normalize.css') }}">
+<link rel="stylesheet" href="{{ admin_asset('/vendor/laravel-admin/adminLogin/css/demo.css') }}">
+<link rel="stylesheet" href="{{ admin_asset('/vendor/laravel-admin/adminLogin/css/component.css') }}">
+
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="{{ admin_base_path('/') }}"><b>{{config('admin.name')}}</b></a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">{{ trans('admin.login') }}</p>
+<body>
+  <div class="container demo-1">
+    <div class="content">
+      <div id="large-header" class="large-header">
+        <canvas id="demo-canvas"></canvas>
+        <div class="logo_box">
+          <h3>欢迎登陆</h3>
 
-    <form action="{{ admin_base_path('auth/login') }}" method="post">
-      <div class="form-group has-feedback {!! !$errors->has('username') ?: 'has-error' !!}">
+          <form action="{{ admin_base_path('auth/login') }}" method="post">
+            
+            <div class="input_outer">
+              @if($errors->has('username'))
+                @foreach($errors->get('username') as $message)
+                  <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>{{$message}}</label></br>
+                @endforeach
+              @endif
+              <span class="u_user"></span>
+              <input type="text" class="text" style="color: #FFFFFF !important" placeholder="{{ trans('admin.username') }}" name="username" value="{{ old('username') }}">
+            </div>
 
-        @if($errors->has('username'))
-          @foreach($errors->get('username') as $message)
-            <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>{{$message}}</label></br>
-          @endforeach
-        @endif
+            <div class="input_outer">
+              @if($errors->has('password'))
+                @foreach($errors->get('password') as $message)
+                  <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>{{$message}}</label></br>
+                @endforeach
+              @endif
+              <span class="us_uer"></span>
+              <input type="password" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" placeholder="{{ trans('admin.password') }}" name="password">
+            </div>
 
-        <input type="input" class="form-control" placeholder="{{ trans('admin.username') }}" name="username" value="{{ old('username') }}">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback {!! !$errors->has('password') ?: 'has-error' !!}">
+            <div class="mb2">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <input class="act-but submit" type="submit" style="color: #FFFFFF;width: 330px" value="登录"/>
+            </div>
+          </form>
 
-        @if($errors->has('password'))
-          @foreach($errors->get('password') as $message)
-            <label class="control-label" for="inputError"><i class="fa fa-times-circle-o"></i>{{$message}}</label></br>
-          @endforeach
-        @endif
 
-        <input type="password" class="form-control" placeholder="{{ trans('admin.password') }}" name="password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-
-        <!-- /.col -->
-        <div class="col-xs-4 col-md-offset-4">
-          <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('admin.login') }}</button>
         </div>
-        <!-- /.col -->
       </div>
-    </form>
+    </div>
+  </div><!-- /container -->
 
-  </div>
-  <!-- /.login-box-body -->
-</div>
-<!-- /.login-box -->
+<script type="text/javascript" src="{{ admin_asset('/vendor/laravel-admin/adminLogin/js/TweenLite.min.js')}} "></script>
+<script type="text/javascript" src="{{ admin_asset('/vendor/laravel-admin/adminLogin/js/EasePack.min.js')}} "></script>
+<script type="text/javascript" src="{{ admin_asset('/vendor/laravel-admin/adminLogin/js/rAF.js')}} "></script>
+<script type="text/javascript" src="{{ admin_asset('/vendor/laravel-admin/adminLogin/js/demo-1.js')}} "></script>
+<script type="text/javascript" src="{{ admin_asset('/vendor/laravel-admin/adminLogin/js/jquery-1.11.1.min.js')}} "></script>
 
-<!-- jQuery 2.1.4 -->
-<script src="{{ admin_asset("/vendor/laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js")}} "></script>
-<!-- Bootstrap 3.3.5 -->
-<script src="{{ admin_asset("/vendor/laravel-admin/AdminLTE/bootstrap/js/bootstrap.min.js")}}"></script>
-<!-- iCheck -->
-<script src="{{ admin_asset("/vendor/laravel-admin/AdminLTE/plugins/iCheck/icheck.min.js")}}"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
-    });
-  });
-</script>
+
+<div style="text-align:center;"></div>
 </body>
 </html>
