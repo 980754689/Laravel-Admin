@@ -12,4 +12,7 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
 
+    $router->resource('news', NewsController::class);
+
 });
+
