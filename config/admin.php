@@ -130,7 +130,6 @@ return [
      * @see https://adminlte.io/docs/2.4/layout
      */
     'skin' => 'skin-blue-light',
-
     /*
     |---------------------------------------------------------|
     |LAYOUT OPTIONS | fixed                                   |
@@ -140,8 +139,8 @@ return [
     |               | sidebar-mini                            |
     |---------------------------------------------------------|
      */
-    'layout' => ['sidebar-mini', 'sidebar-collapse'],
-
+    // 'layout' => ['sidebar-mini', 'sidebar-collapse'],
+    'layout' => ['sidebar-mini'],
     /*
      * Version displayed in footer.
      */
