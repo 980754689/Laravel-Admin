@@ -24,3 +24,8 @@ Encore\Admin\Form::forget(['map', 'editor']);
 
 //重写内置视图
 app('view')->prependNamespace('admin', resource_path('views/admin/'));
+
+use App\Admin\Extensions\Form\CKEditor;
+use Encore\Admin\Form;
+
+Form::extend('ckeditor', CKEditor::class);
