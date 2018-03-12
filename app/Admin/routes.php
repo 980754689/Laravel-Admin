@@ -15,5 +15,7 @@ Route::group([
     $router->resource('news', NewsController::class);
     $router->resource('newtypes', NewtypesController::class);
 
+    $router->resource('cases', CasesController::class);
+
 });
 
