@@ -16,6 +16,9 @@ Route::group([
     $router->resource('newtypes', NewtypesController::class);
 
     $router->resource('cases', CasesController::class);
+    $router->resource('casetypes', CasetypesController::class);
+
+    
 
 });
 

@@ -15,14 +15,20 @@ class News extends Model
     }
 
     //获取分类信息
-    public static function new_type(){
+    public static function new_type()
+    {
     	return Newtypes::where('is_show', '=', 1)->pluck('title', 'id');
     }
 
     //获取分类信息
-    public static function type($type_id){
+    public static function type($type_id)
+    {
         return Newtypes::where('id', '=', $type_id)->pluck('title');
     }
+
+
+
+
 
 }
 

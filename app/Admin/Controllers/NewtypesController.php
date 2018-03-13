@@ -32,6 +32,20 @@ class NewtypesController extends Controller
     }
 
     /**
+     *
+     */
+    public function demo()
+    {
+        return Admin::content(function (Content $content){
+             $content->header("新闻分类");
+             $content->description('列表');
+
+             $content->body($this->grid());
+        });
+    }
+
+
+    /**
      * Edit interface.
      *
      * @param $id
@@ -126,4 +140,7 @@ class NewtypesController extends Controller
 
         });
     }
+
+
 }
+
