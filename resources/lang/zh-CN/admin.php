@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'Dashboard'                => '仪表盘',
+    'Description'                => '描述',
+
     'online'                => '在线',
     'login'                 => '登录',
     'logout'                => '登出',

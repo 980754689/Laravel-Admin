@@ -64,7 +64,7 @@ class NewtypesController extends Controller
 
     /**
      * Create interface.
-     *
+     *               
      * @return Content
      */
     public function create()
@@ -77,7 +77,7 @@ class NewtypesController extends Controller
             $content->body($this->form());
         });
     }
-
+    
     /**
      * Make a grid builder.
      *
@@ -86,7 +86,7 @@ class NewtypesController extends Controller
     protected function grid()
     {
         return Admin::grid(Newtypes::class, function (Grid $grid) {
-
+            
             $grid->id('编号')->sortable();
             $grid->title('所属分类');
             $grid->is_show('展示')->display(function ($is_show) {

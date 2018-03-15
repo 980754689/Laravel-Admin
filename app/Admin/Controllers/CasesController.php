@@ -72,7 +72,7 @@ class CasesController extends Controller
     protected function grid()
     {
         return Admin::grid(Cases::class, function (Grid $grid) {
-
+            
             $grid->id('编号')->sortable();
             $grid->title('标题');
             $grid->address('项目地址'); 
@@ -141,4 +141,10 @@ class CasesController extends Controller
 
         });
     }
+
+    
+
+
+
+    
 }
