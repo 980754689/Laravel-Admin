@@ -18,11 +18,5 @@ class CKEditor extends Field
         $this->script = "$('textarea.{$this->getElementClass()}').ckeditor();";
 
         return parent::render();
-
     }
-
-
-
-
-    
 }

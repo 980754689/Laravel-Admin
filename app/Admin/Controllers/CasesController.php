@@ -118,13 +118,10 @@ class CasesController extends Controller
             $form->text('title', '标题')->rules('required');
 
             $form->image('img', '图片');
-            // $form->image('img', '图片')->move($dir, $name);
 
             $form->text('address', '项目地址')->rules('required');
 
             $form->text('area', '地区')->rules('required');
-
-            $form->editor('content', '项目介绍');
 
             $form->radio('seat', '初始位置')->options(['200' => '200', '400' => '400', '600' => '600'])->default('200');
 
@@ -135,6 +132,8 @@ class CasesController extends Controller
                 'off' => ['value' => 0, 'text' => '关闭', 'color' => 'danger'],
             ];
             $form->switch('is_show', '展示')->states($states);
+
+            $form->editor('content', '项目介绍');
 
             $form->display( 'created_at', '创建时间');
             $form->display( 'updated_at', '修改时间');

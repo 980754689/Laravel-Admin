@@ -17,15 +17,15 @@
  * Admin::js('/packages/prettydocs/js/main.js');
  *
  */
+use App\Admin\Extensions\Form\CKEditor;
+use Encore\Admin\Form;
+Form::extend('ckeditor', CKEditor::class);
 
-Encore\Admin\Form::forget(['map', 'editor']);
-
-
+use App\Admin\Extensions\Form\WangEditor;
+//设置去掉地图和富文本编辑
+//Encore\Admin\Form::forget(['map', 'editor']);
 
 //重写内置视图
 app('view')->prependNamespace('admin', resource_path('views/admin/'));
-
-use App\Admin\Extensions\Form\CKEditor;
-use Encore\Admin\Form;
-
-Form::extend('ckeditor', CKEditor::class);
+//设置wangeditor编辑器
+Form::extend('editor', WangEditor::class);

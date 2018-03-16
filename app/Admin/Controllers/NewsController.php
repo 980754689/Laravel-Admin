@@ -63,7 +63,7 @@ class NewsController extends Controller
             $content->body($this->form());
         });
     }
-
+    
     /**
      * Make a grid builder.
      * @return Grid
@@ -132,7 +132,7 @@ class NewsController extends Controller
 
             $form->textarea('content_1', '简介')->rules('required|min:10');
 
-            $form->ckeditor('content_2', '内容');
+            $form->editor('content_2', '内容');
 
             //去掉重置按钮
             $form->disableReset();

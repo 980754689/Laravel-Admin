@@ -18,7 +18,9 @@ Route::group([
     $router->resource('cases', CasesController::class);
     $router->resource('casetypes', CasetypesController::class);
 
-    
+    //团队
+    $router->resource('teams', TeamsController::class);
 
+    
 });
 
