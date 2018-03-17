@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Models\Teams;
+use App\Admin\Models\Carousels;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class TeamsController extends Controller
+class CarouselsController extends Controller
 {
     use ModelForm;
 
@@ -24,8 +24,8 @@ class TeamsController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('专家团队管理');
-            $content->description('列表');
+            $content->header('轮播图管理');
+            $content->description('轮播图列表');
 
             $content->body($this->grid());
         });
@@ -41,7 +41,7 @@ class TeamsController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('专家团队管理');
+            $content->header('轮播图管理');
             $content->description('修改');
 
             $content->body($this->form()->edit($id));
@@ -57,11 +57,10 @@ class TeamsController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('专家团队管理');
-            $content->description('添加');
+            $content->header('轮播图管理');
+            $content->description('创建');
 
             $content->body($this->form());
-
         });
     }
 
@@ -72,30 +71,36 @@ class TeamsController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Teams::class, function (Grid $grid) {
-            
+        return Admin::grid(Carousels::class, function (Grid $grid) {
+
             $grid->id('编号')->sortable();
 
-            $grid->img('图片')->image('http://laravel22.cc/uploads/',100, 100);
+            //$grid->img('图像')->image();
+            $grid->img('图像')->image('http://laravel22.cc/uploads/',100);
 
-            $grid->name('姓名');
+            $grid->name('名称');
 
-            $grid->zhicheng('职称');
+            $grid->link('链接');
 
-            $grid->is_show('展示')->display(function ($is_show) {
-                return $is_show ? '展示' : '不展示';
+            $grid->is_show('展示')->display(function($is_show){
+                return $is_show ? '展示': '不展示' ;
+            });
+
+            $grid->target('是否打开新页面')->display(function($target){
+                return $target ? '是' : '否' ;
             });
 
             $grid->created_at('创建时间');
+
             //设置查询
-            $grid->filter(function ($filter){
-                // 去掉默认的id过滤器
+            $grid->filter(function($filter){
+                //去掉默认ID
                 $filter->disableIdFilter();
-                $filter->like('name', '姓名');
+                $filter->like('name', '名称');
             });
 
-        }); 
-    }       
+        });
+    }
 
     /**
      * Make a form builder.
@@ -104,35 +109,27 @@ class TeamsController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Teams::class, function (Form $form) {
+        return Admin::form(Carousels::class, function (Form $form) {
 
             $form->display('id', '编号');
 
-            //图片上传
             $form->image('img', '图片');
 
-            $form->text('name', '姓名');
+            $form->text('name', '名称');
 
-            $form->text('zhicheng', '职称');
-            
-            $form->text('work_time', '年限');
+            $form->text('link', '链接');
 
-            //开关
             $states = [
                 'on'  => ['value' => 1, 'text' => '展示', 'color' => 'success'],
                 'off' => ['value' => 0, 'text' => '不展示', 'color' => 'danger'],
             ];
             $form->switch('is_show', '展示')->states($states);
 
-            $form->editor('jianjie', '简介');
-
-            $form->editor('fenge', '风格');
-
-            $form->editor('exper', '经验');
-            
-            // 去掉重置按钮
-            $form->disableReset();
-
+            $target = [
+                'on'  => ['value' => 1, 'text' => '是', 'color' => 'success'],
+                'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
+            ];
+            $form->switch('target', '是否打开新页面')->states($target);
         });
     }
 }

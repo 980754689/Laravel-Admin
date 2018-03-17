@@ -21,6 +21,8 @@ Route::group([
     //团队
     $router->resource('teams', TeamsController::class);
 
-    
+    //轮播图
+    $router->resource('carousels', CarouselsController::class);
+
 });
 

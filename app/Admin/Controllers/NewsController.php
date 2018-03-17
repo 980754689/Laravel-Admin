@@ -115,13 +115,13 @@ class NewsController extends Controller
             $form->text('title', '标题')->rules('required|min:3');
 
             //图片上传
-            $form->image('img', '图片');
+            $form->image('img', '图片')->removable();
 
             $form->select('type_id', '所属分类')->options( News::new_type() );
 
             $form->text('orderby', '排序');
 
-            $form->radio('seat', '初始位置')->options(['200' => '200', '400' => '400', '600' => '600'])->default('200');
+            $form->radio('seat', '初始位置')->options(['100' => '100','200' => '200','300' => '300','400' => '400', '500' => '500', '600' => '600'])->default('100');
             
             //开关
             $states = [
