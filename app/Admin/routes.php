@@ -10,11 +10,14 @@ Route::group([
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
 
+    //
     $router->get('/', 'HomeController@index');
 
+    //新闻
     $router->resource('news', NewsController::class);
     $router->resource('newtypes', NewtypesController::class);
 
+    //案例
     $router->resource('cases', CasesController::class);
     $router->resource('casetypes', CasetypesController::class);
 
@@ -23,6 +26,10 @@ Route::group([
 
     //轮播图
     $router->resource('carousels', CarouselsController::class);
+
+    //首页我们的服务
+    $router->resource('services', ServicesController::class);
+
 
 });
 
