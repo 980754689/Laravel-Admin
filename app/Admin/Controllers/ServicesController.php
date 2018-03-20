@@ -73,10 +73,9 @@ class ServicesController extends Controller
     {
         return Admin::grid(Services::class, function (Grid $grid) {
 
-
             $grid->id('编号')->sortable();
 
-            $grid->img('图片')->image();
+            $grid->img('图片')->image('http://laravel22.cc/uploads/', '100', '100');
 
             $grid->title('标题');
         
@@ -92,6 +91,7 @@ class ServicesController extends Controller
                 $filter->disableIdFilter();
                 $filter->like('title', '标题');
             });
+
         });
     }
 
@@ -112,10 +112,11 @@ class ServicesController extends Controller
 
             $form->text('url', '链接')->default('0');
 
-            //$form->multipleImage('image', '图片')->removable();
-            //$form->slider('year', '年龄')->options(['max' => 110, 'min' => 1, 'step' => 1, 'postfix' => 'years old']);
+            // $form->multipleImage('image', '图片')->removable();
+            // $form->multipleFile('image', '图片');
+            // $form->slider('year', '年龄')->options(['max' => 110, 'min' => 1, 'step' => 1, 'postfix' => 'years old']);
 
-            //开关
+            // 开关
             $states = [
                 'on'  => ['value' => 1, 'text' => '展示', 'color' => 'success'],
                 'off' => ['value' => 0, 'text' => '不展示', 'color' => 'danger'],
@@ -124,8 +125,9 @@ class ServicesController extends Controller
 
             // 去掉重置按钮
             $form->disableReset(  );
+            
 
-
+            
 
         });
     }

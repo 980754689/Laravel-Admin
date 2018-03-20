@@ -30,6 +30,9 @@ Route::group([
     //首页我们的服务
     $router->resource('services', ServicesController::class);
 
+    //服务流程
+    $router->resource('flows', FlowsController::class);
 
+    
 });
 

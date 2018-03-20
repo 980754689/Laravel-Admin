@@ -58,7 +58,7 @@ class NewsController extends Controller
         return Admin::content(function (Content $content) {
 
             $content->header('新闻管理');
-            $content->description('新闻列表');
+            $content->description('新增');
 
             $content->body($this->form());
         });
@@ -90,6 +90,7 @@ class NewsController extends Controller
             });
 
             $grid->orderby('排序')->sortable();
+
             $grid->created_at('创建时间');
             //设置查询
             $grid->filter(function ($filter){

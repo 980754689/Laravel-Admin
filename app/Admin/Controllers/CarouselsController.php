@@ -58,7 +58,7 @@ class CarouselsController extends Controller
         return Admin::content(function (Content $content) {
 
             $content->header('轮播图管理');
-            $content->description('创建');
+            $content->description('新增');
 
             $content->body($this->form());
         });
@@ -130,6 +130,8 @@ class CarouselsController extends Controller
                 'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
             ];
             $form->switch('target', '是否打开新页面')->states($target);
+
+
         });
     }
 }

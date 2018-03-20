@@ -28,6 +28,7 @@ class CasetypesController extends Controller
             $content->description('分类列表');
 
             $content->body($this->grid());
+
         });
     }
 
@@ -58,7 +59,7 @@ class CasetypesController extends Controller
         return Admin::content(function (Content $content) {
 
             $content->header('案例分类管理');
-            $content->description('创建');
+            $content->description('新增');
 
             $content->body($this->form());
         });

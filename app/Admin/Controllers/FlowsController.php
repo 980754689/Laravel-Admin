@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Models\Teams;
+use App\Admin\Models\Flows;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class TeamsController extends Controller
+class FlowsController extends Controller
 {
     use ModelForm;
 
@@ -24,7 +24,7 @@ class TeamsController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('专家团队管理');
+            $content->header('服务流程管理');
             $content->description('列表');
 
             $content->body($this->grid());
@@ -41,7 +41,7 @@ class TeamsController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('专家团队管理');
+            $content->header('服务流程管理');
             $content->description('修改');
 
             $content->body($this->form()->edit($id));
@@ -57,11 +57,10 @@ class TeamsController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('专家团队管理');
+            $content->header('服务流程管理');
             $content->description('新增');
 
             $content->body($this->form());
-
         });
     }
 
@@ -72,30 +71,29 @@ class TeamsController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Teams::class, function (Grid $grid) {
-            
+        return Admin::grid(Flows::class, function (Grid $grid) {
+
             $grid->id('编号')->sortable();
 
-            $grid->img('图片')->image('http://laravel22.cc/uploads/',100, 100);
+            $grid->title('标题');
 
-            $grid->name('姓名');
+            $grid->title_en('标题(英语)');
 
-            $grid->zhicheng('职称');
-
-            $grid->is_show('展示')->display(function ($is_show) {
+            $grid->is_show('是否展示')->display(function($is_show){
                 return $is_show ? '展示' : '不展示';
             });
 
             $grid->created_at('创建时间');
+
             //设置查询
             $grid->filter(function ($filter){
                 // 去掉默认的id过滤器
                 $filter->disableIdFilter();
-                $filter->like('name', '姓名');
+                $filter->like('title', '标题');
             });
 
-        }); 
-    }       
+        });
+    }
 
     /**
      * Make a form builder.
@@ -104,18 +102,13 @@ class TeamsController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Teams::class, function (Form $form) {
+        return Admin::form(Flows::class, function (Form $form) {
 
             $form->display('id', '编号');
 
-            //图片上传
-            $form->image('img', '图片');
+            $form->text('title', '标题')->rules('required|min:3');
 
-            $form->text('name', '姓名');
-
-            $form->text('zhicheng', '职称');
-            
-            $form->text('work_time', '年限');
+            $form->select('title_en', '标题(英语)');
 
             //开关
             $states = [
@@ -124,13 +117,9 @@ class TeamsController extends Controller
             ];
             $form->switch('is_show', '展示')->states($states);
 
-            $form->editor('jianjie', '简介');
+            $form->editor('content', '服务介绍');
 
-            $form->editor('fenge', '风格');
-
-            $form->editor('exper', '经验');
-            
-            // 去掉重置按钮
+            //去掉重置按钮
             $form->disableReset();
 
         });

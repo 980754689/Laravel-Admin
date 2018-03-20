@@ -58,7 +58,7 @@ class CasesController extends Controller
         return Admin::content(function (Content $content) {
 
             $content->header('案例管理');
-            $content->description('创建');
+            $content->description('新增');
 
             $content->body($this->form());
         });
@@ -84,7 +84,7 @@ class CasesController extends Controller
                 return "<span style='font-size: 100%;' class='label label-warning'>$title</span>";
             });
 
-            // $grid->img('图像')->image(); 
+            // $grid->img('图像')->image();
 
             $grid->is_show('展示')->display(function ($is_show) {
                 return $is_show ? '是' : '否';
@@ -92,7 +92,7 @@ class CasesController extends Controller
 
             $grid->created_at('创建时间');
             $grid->updated_at('修改时间');
-            
+
             //查询过滤
             $grid->filter(function ($filter){
                 // 去掉默认的id过滤器
@@ -136,6 +136,7 @@ class CasesController extends Controller
             $form->editor('content', '项目介绍');
 
             $form->display( 'created_at', '创建时间');
+
             $form->display( 'updated_at', '修改时间');
 
         });
