@@ -27,7 +27,7 @@ class NewsController extends Controller
             $content->header('新闻管理');
             $content->description('新闻列表');
 
-            $content->body($this->grid());
+            $content->body( $this->grid() );
         });
     }
 

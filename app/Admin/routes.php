@@ -33,6 +33,11 @@ Route::group([
     //服务流程
     $router->resource('flows', FlowsController::class);
 
-    
+    // 人才招聘
+    $router->resource('jobs', JobsController::class);
+
+    // 关于我们
+    $router->resource('abouts', AboutsController::class);
+
 });
 
