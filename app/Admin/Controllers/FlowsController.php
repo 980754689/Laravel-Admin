@@ -106,9 +106,9 @@ class FlowsController extends Controller
 
             $form->display('id', '编号');
 
-            $form->text('title', '标题')->rules('required|min:3');
+            $form->text('title', '标题')->rules('required');
 
-            $form->select('title_en', '标题(英语)');
+            $form->text('title_en', '标题(英语)');
 
             //开关
             $states = [

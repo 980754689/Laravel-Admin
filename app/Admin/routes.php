@@ -39,5 +39,7 @@ Route::group([
     // 关于我们
     $router->resource('abouts', AboutsController::class);
 
+    // 备案信息
+    $router->resource('copyrights', CopyrightsController::class);
 });
 

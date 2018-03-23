@@ -79,14 +79,39 @@ class JobsController extends Controller
 
             $grid->type('职位类型');
 
-            $grid->type('招聘人数');
+            $grid->num('招聘人数');
 
-            $grid->type('职位类型');
+            $grid->company('就职公司');
 
-            $grid->type('职位类型');
+            $grid->time('更新时间');
 
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->nature('工作性质');
+
+            $grid->address('工作地点');
+
+            $grid->salary('薪资范围');
+
+            $grid->branch('需求部门');
+
+            $grid->addre('招聘区域');
+
+            $grid->is_show('是否展示')->display(function ($is_show) {
+                return $is_show ? '展示' : '不展示' ;
+            });
+
+            $grid->orderby('排序')->sortable();
+
+            $grid->created_at('创建时间');
+
+            //$grid->updated_at('更新时间');
+
+            //设置查询
+            $grid->filter(function ($filter){
+                // 去掉默认的id过滤器
+                $filter->disableIdFilter();
+                $filter->like('name', '职位名称');
+            });
+
         });
     }
 
@@ -99,10 +124,43 @@ class JobsController extends Controller
     {
         return Admin::form(Jobs::class, function (Form $form) {
 
-            $form->display('id', 'ID');
+            $form->display('id', '编号');
 
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+            $form->text('name', '职位名称');
+
+            $form->text('type', '职位类型');
+
+            $form->text('num', '招聘人数');
+
+            $form->text('company', '就职公司');
+
+            $form->text('time', '更新时间');
+
+            $form->text('nature', '工作性质');
+
+            $form->text('address', '工作地点');
+
+            $form->text('salary', '薪资范围');
+
+            $form->text('branch', '需求部门');
+
+            $form->text('addre', '招聘区域');
+
+            $form->text('orderby', '排序');
+
+            //开关
+            $states = [
+                'on'  => ['value' => 1, 'text' => '展示', 'color' => 'success'],
+                'off' => ['value' => 0, 'text' => '不展示', 'color' => 'danger'],
+            ];
+            $form->switch('is_show', '展示')->states($states);
+
+            $form->editor('content', '职责');
+
+            $form->display('created_at', '创建时间');
+
+            $form->display('updated_at', '更新时间');
+
         });
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Models\Abouts;
+use App\Admin\Models\Copyrights;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class AboutsController extends Controller
+class CopyrightsController extends Controller
 {
     use ModelForm;
 
@@ -24,7 +24,7 @@ class AboutsController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('关于我们');
+            $content->header('备案信息');
             $content->description('列表');
 
             $content->body($this->grid());
@@ -41,7 +41,7 @@ class AboutsController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('关于我们');
+            $content->header('备案信息');
             $content->description('修改');
 
             $content->body($this->form()->edit($id));
@@ -57,7 +57,7 @@ class AboutsController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('关于我们');
+            $content->header('备案信息');
             $content->description('新增');
 
             $content->body($this->form());
@@ -71,39 +71,19 @@ class AboutsController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Abouts::class, function (Grid $grid) {
+        return Admin::grid(Copyrights::class, function (Grid $grid) {
 
-            $grid->id('编号')->sortable();
+            $grid->id('ID')->sortable();
 
             $grid->company('公司名称');
 
-            $grid->tel('电话号码');
+            $grid->time('时间');
 
-            $grid->phone('手机号');
+            $grid->url('工商链接');
 
-            $grid->email('邮箱地址');
-
-            $grid->qq('QQ');
-
-            $grid->work_time('工作时间');
-
-            $grid->address('公司地址');
-
-            $grid->wechat('微信');
-
-            //$grid->jianjie('公司简介');
-
-            //$grid->wenhua('企业文化');
-
-            //$grid->fazhan('发展历程');
-
-            //$grid->fanwei('服务范围');
-
-            //$grid->youshi('服务优势');
+            $grid->ip('备案号');
 
             $grid->created_at('创建时间');
-
-            //$grid->updated_at('修改时间');
 
             //禁用分页条
             $grid->disablePagination();
@@ -137,40 +117,25 @@ class AboutsController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Abouts::class, function (Form $form) {
+        return Admin::form(Copyrights::class, function (Form $form) {
 
-            $form->display('id', '编号');
+            $form->display('id', 'ID');
 
-            $form->text('company', '公司名称')->rules('required');
+            $form->text('time',  '时间');
 
-            $form->text('tel', '电话号码')->rules('required');
+            $form->text('url',  '工商链接');
 
-            $form->text('phone', '手机号')->rules('required');
+            $form->text('company',  '公司名称');
 
-            $form->text('email', '邮箱地址')->rules('required');
+            $form->text('ip', '备案号');
 
-            $form->text('qq', 'QQ')->rules('required');
+            $form->display('created_at', '创建时间');
 
-            $form->text('wechat', '微信')->rules('required');
+            $form->display('updated_at', '更新时间');
 
-            $form->text('work_time', '工作时间')->rules('required');
+            // 去掉重置按钮
+            $form->disableReset();
 
-            $form->text('address', '公司地址')->rules('required');
-
-            $form->editor('jianjie', '公司简介');
-
-            $form->editor('wenhua', '企业文化');
-
-            $form->editor('fazhan', '发展历程');
-
-            $form->editor('fanwei', '服务范围');
-
-            $form->editor('youshi', '服务优势');
-
-            $form->display('created_at', '创建时间' );
-
-            $form->display('updated_at', '修改时间' );
         });
     }
-
 }
