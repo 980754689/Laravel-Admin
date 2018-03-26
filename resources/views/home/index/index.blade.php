@@ -79,7 +79,7 @@
                 <ul>
                     <li>
                         <a href="" class="items">
-						<span class="ico" style="background-image: url(images/l-ico1.png);"></span>
+						<span class="ico" style="background-image: url({{ admin_asset('/home/images/l-ico1.png') }});"></span>
 						<p>智能制造</p>
 					  <span class="en">Intelligent manufacturing</span>
 					</a>

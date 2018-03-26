@@ -11,6 +11,10 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
+/**
+ * 轮播图控制器
+ * @package App\Admin\Controllers
+ */
 class CarouselsController extends Controller
 {
     use ModelForm;
